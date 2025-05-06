@@ -26,15 +26,19 @@ public class codingRegion_SNP {
     
     public static void main(String[] args) throws IOException {
         String gff3_fn = "C:\\Jiyuan\\sourceCode\\NB_annotation\\NbLx02\\SNP_zuba\\NbLx02.gff3";
-        String gene_prefix = "LX";
+//        String gene_prefix = "LX";
         String SNP_prefix = "C:\\Jiyuan\\sourceCode\\NB_annotation\\NbLx02\\SNP_zuba\\NbLx02.Zuba.2pass.Aligned.sortedByCoord.out.bam";
 //        System.out.println(SNP_prefix);
+        if(args.length == 2){
+            gff3_fn = args[0];
+            SNP_prefix = args[1];
+        }
         gff3 mygff3 = new gff3();
         mygff3.readFullIn(gff3_fn);
-        new codingRegion_SNP().proc(mygff3, SNP_prefix, gene_prefix);
+        new codingRegion_SNP().proc(mygff3, SNP_prefix);//, gene_prefix);
     }
     
-    void proc(gff3 mygff3, String SNP_prefix, String gene_prefix) throws IOException{
+    void proc(gff3 mygff3, String SNP_prefix) throws IOException{
 //        for (int chr_no = 1; chr_no <=19; chr_no++){
 //            String chrom = gene_prefix+String.format("%02d", chr_no);
 //            String mismatch_fn = SNP_prefix+String.format("%02d", chr_no)+"_mismatches.txt";
